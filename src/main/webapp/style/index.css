@@ -1,0 +1,43 @@
+
+
+.clientSingle div {
+    padding-left: 1em;
+    margin: .5em;
+}
+
+.clientSingle div label {
+    width: 8em;
+    display: inline-block;
+}
+
+.clientSingle div span {
+}
+
+.partSingle div {
+    padding-left: 1em;
+    margin: .5em;
+}
+
+.partSingle div label {
+    width: 8em;
+    display: inline-block;
+}
+
+.partSingle div span {
+}
+
+.clientDatabaseContainer {
+    padding-left: 1em;
+}
+
+.invalid {
+    border: 2px solid red;
+    color: red;
+}
+
+.error-box {
+    background-color: yellow;
+    border: 1px solid red;
+    display: none;
+}
+

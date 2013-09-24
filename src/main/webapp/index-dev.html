@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>JingleHeimer-Frick 3D Printing Supply & Repair</title>
+    <link rel="stylesheet" href="style/foundation.css">
+    <link href="style/smoothness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+    <link href="style/index.css" rel="stylesheet">
+    <link href="style/calculator.css" rel="stylesheet">
+    <script data-main="js/main" src="js/lib/require.js"></script>
+</head>
+<body>
+
+<!-- Nav Bar -->
+<div class="row">
+    <div class="twelve columns">
+        <h1>JingleHeimer-Frick <small>3D Printing Supply And Repair</small></h1>
+
+        <ul class="nav-bar">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#newClientManager">Clients</a></li>
+            <li><a href="#newPartsManager">Parts</a></li>
+            <li><a href="#newCalculator">New Calculator</a></li>
+            <li><a href="#closeAll">Close All</a></li>
+        </ul>
+
+
+    </div>
+</div>
+<!-- End Nav -->
+
+<!-- Main Page Content and Sidebar -->
+
+<div class="row">
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-home">Home</a></li>
+        </ul>
+        <div id="tabs-home">
+            <div class="row">
+                <div class="twelve columns" role="content">
+                    <article>
+
+                        <h3><a href="#">The Warehouse Inventory Example</a></h3>
+                        <h6>Written by <a href="http://www.georgefrick.com" target="_blank">George Frick</a> on September 24, 2013.</h6>
+
+                        <div class="row">
+                            <div class="six columns">
+                                <p>This application is a full blown example of using Backbone and various supporting libraries and tools to do real software development. Each includes file is commented, and everything is MIT license.</p>
+                                <p>By demonstrating various usage patterns, gotchas, and corner implementations; an argument is made for an unobtrusive productivity gain. Backbone will never provide everything, but it will never take over. You don't have to use Backbone for everything, it can be another tool you apply to front end application design.</p>
+                            </div>
+                            <div class="six columns">
+                                <img src="images/reprap-diy-printer-kit.jpg" width="60%" height="60%" />
+                            </div>
+                        </div>
+
+                        <p>The use of RequireJS, Grunt, and Foundation showcase some of the power of modern front end development tools. We can gain productivity very similar to the backend. With well tested, optimized builds that aren't held back due to automation.</p>
+
+                        <p>All of this combined should allow you to jump right into Backbone; without giving you an inch thick manual to work through. We all learn best by code and this is a living tutorial that you can hopefully learn from, bootstrap, and reference.</p>
+
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="twelve columns">
+
+        <div class="row">
+            <div class="six columns">
+                <p>&copy; Copyright no one at all. Go to town. (That means MIT license)</p>
+            </div>
+            <div class="six columns">
+                <ul class="link-list right">
+                    <li><a href="http://www.nvisia.com" target="_blank">NVISIA</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+
+<script type="text/x-handlebars-template" id="tab-template">
+    <li><a href='#{{id}}'>{{name}}</a></li>
+</script>
+
+<script type="text/x-handlebars-template" id="tabContent-template">
+    <div id='{{id}}'></div>
+</script>
+
+<script type="text/x-handlebars-template" id="calculator-template">
+
+    <form class="calculator" name="Keypad">
+        <fieldset>
+            <legend>Calculator</legend>
+            <input name="ReadOut" type="Text" size="24" value="0" width="100%">
+            <button class="btnClear" >C</button>
+            <button class="btnClearEntry"  >CE</button>
+            <button class="numInput" name="7"  value="7">7</button>
+            <button class="numInput" name="8"  value="8">8</button>
+            <button class="numInput" name="9"  value="9">9</button>
+            <button class="btnNeg" value="+/-">+/-</button>
+            <button class="btnPercent"  value="%">%</button>
+            <button class="numInput" name="4"  value="4">4</button>
+            <button class="numInput" name="5"  value="5">5</button>
+            <button class="numInput" name="6" value="6">6</button>
+            <button class="opInput" name="+"  value="+">+</button>
+            <button class="opInput" name="-"  value="-">-</button>
+            <button class="numInput" name="1"  value="1">1</button>
+            <button class="numInput" name="2"  value="2">2</button>
+            <button class="numInput" name="3"  value="3">3</button>
+            <button class="opInput" name="*"  value="*">*</button>
+            <button class="opInput" name="/"  value="/">/</button>
+            <button class="numInput" name="0"  value="0">0</button>
+            <button class="btnDecimal" type="Button" value=".">.</button>
+            <button class="opInput" name="=" value="=">=</button>
+        </fieldset>
+    </form>
+
+</script>
+
+
+<script type="text/x-handlebars-template" id="client-list-template">
+    <h4>There are {{ count }} clients.</h4>
+    <div class='clientList'></div>
+</script>
+
+<script type="text/x-handlebars-template" id="client-template">
+    <div class="clientSingle">
+        <div><label>Name:</label><span>{{firstName}} {{lastName}}</span></div>
+        <div><label>Position:</label><span>{{position}}</span></div>
+        <div><label>Email:</label><span>{{email}}</span></div>
+        <div><label>&nbsp;</label><span><button>Delete {{name}}</button></span></div>
+
+    </div>
+</script>
+
+<script type="text/x-handlebars-template" id="client-form-template">
+    <fieldset>
+        <legend>Add a Client</legend>
+
+        <div class='control-group'>
+            <label>First Name</label>
+            <div>
+                <input type='text' name='firstName' value="{{firstName}}">
+            </div>
+        </div>
+
+        <div class='control-group'>
+            <label>Last Name</label>
+            <div>
+                <input type='text' name='lastName' value="{{lastName}}">
+            </div>
+        </div>
+
+        <div class='control-group'>
+            <label>Position</label>
+            <div>
+                <input type='text' name='position' value="{{position}}">
+            </div>
+        </div>
+
+        <div class='control-group'>
+            <label>Email</label>
+            <div>
+                <input type='text' name='email' value="{{email}}">
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit">Add</button>
+        </div>
+
+    </fieldset>
+    <div class="error-box">
+        <ul class="error-list"></ul>
+    </div>
+</script>
+
+<script type="text/x-handlebars-template" id="parts-list-template">
+    <h4>There are {{ count }} parts.</h4>
+
+    <div class='partsList'></div>
+</script>
+
+<script type="text/x-handlebars-template" id="part-template">
+    <div class="partSingle">
+        <div><label>Part Code:</label><span>{{partCode}}</span></div>
+        <div><label>Name:</label><span>{{name}}</span></div>
+        <div><label>Description:</label><span>{{description}}</span></div>
+        <div><label>Standard:</label><span>{{standard}}</span></div>
+        <div><label>Quantity Per:</label><span>{{quantityPer}}</span></div>
+        {{#if isNonRefundable}}
+        <div><label>&nbsp;</label><span style="font-weight: bold;">Item(s) are non-refundable.</span></div>
+        {{/if}}
+        <div><label>&nbsp;</label><span><button>Delete {{name}}</button></span></div>
+    </div>
+</script>
+
+
+<script type="text/x-handlebars-template" id="part-form-template">
+    <fieldset>
+        <legend>Add a Part</legend>
+
+        <div class='control-group'>
+            <label>Part Code  (XXX-###)</label>
+            <div>
+                <input type='text' name='partCode' size="6">
+            </div>
+        </div>
+
+        <div class='control-group'>
+            <label>Name</label>
+            <div>
+                <input type='text' name='name'>
+            </div>
+        </div>
+
+        <div class='control-group'>
+            <label>Description</label>
+            <div>
+                <input type='text' name='description' size="20">
+            </div>
+        </div>
+
+        <div class='control-group'>
+            <label>Standard</label>
+            <div>
+                <select name="standard">
+                    <option value="0">Please Choose</option>
+                    <option value="SAE">SAE</option>
+                    <option value="Metric">Metric</option>
+                    <option value="N/A">N/A</option>
+                </select>
+            </div>
+        </div>
+
+        <div class='control-group'>
+            <label>Quantity Per</label>
+            <div>
+                <input type='text' name='quantityPer' title="For boxes, sets, cartons, etc" size="4">
+            </div>
+        </div>
+
+        <div class='control-group'>
+            <input type='checkbox' name='isNonRefundable'> <label>Non-Refundable</label>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit">Add</button>
+        </div>
+    </fieldset>
+    <div class="error-box">
+        <ul class="error-list"></ul>
+    </div>
+</script>
+
+<script type="text/x-handlebars-template" id="client-manager-template">
+    <div class="row">
+        <div class='clientFormContainer clientDiv'  style="float: left; width: 30%;"></div>
+        <div class="clientDatabaseContainer clientDiv" style="float: right; width: 65%;"></div>
+    </div>
+    <div style="clear:both">&nbsp;</div>
+</script>
+
+<script type="text/x-handlebars-template" id="parts-manager-template">
+    <div class="container">
+        <div class='partsFormContainer partsDiv' style="float: left; width: 30%;"></div>
+        <div class="partsDatabaseContainer partsDiv" style="float: right; width: 65%;"></div>
+    </div>
+
+    <div style="clear:both">&nbsp;</div>
+</script>
+
+</body>
+</html>
