@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC 
+		"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+		"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+ 
+	<form-beans>
+	   <form-bean name="mainForm" type="com.georgefrick.sad.form.MainForm"/>
+	</form-beans>
+ 
+	<action-mappings>
+		<action path="/main" type="com.georgefrick.sad.action.MainAction" name="mainForm">
+		    <forward name="home" path="/velocity/home.vm"/>
+			<forward name="clients" path="/velocity/clients.vm"/>
+			<forward name="parts" path="/velocity/parts.vm"/>
+			<forward name="calculator" path="/velocity/calculator.vm"/>
+	   	</action>
+	   	
+		<action path="/client" type="com.georgefrick.sad.action.ClientAction" name="ClientAction">
+		    <forward name="clients" path="/main.do?view=clients" redirect="true"/>
+		</action>
+		
+		<action path="/part" type="com.georgefrick.sad.action.PartAction" name="PartAction">
+		    <forward name="parts" path="/main.do?view=parts" redirect="true"/>
+		</action>
+	</action-mappings>
+ 
+</struts-config>

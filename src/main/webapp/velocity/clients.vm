@@ -1,0 +1,69 @@
+#include("/velocity/header.html")
+<div class="row ui-widget ui-widget-content ui-corner-all">
+	<div class="twelve columns">
+        <div class='clientFormContainer clientDiv'  style="float: left; width: 30%;">
+        	<fieldset>
+		        <legend>Add a Client</legend>
+		
+				<form method="POST" action="client.do?action=save">
+		
+			        <div class='control-group'>
+			            <label>First Name</label>
+			            <div>
+			                <input type='text' name='firstName'>
+			            </div>
+			        </div>
+			
+			        <div class='control-group'>
+			            <label>Last Name</label>
+			            <div>
+			                <input type='text' name='lastName'>
+			            </div>
+			        </div>
+			
+			        <div class='control-group'>
+			            <label>Position</label>
+			            <div>
+			                <input type='text' name='position'>
+			            </div>
+			        </div>
+			
+			        <div class='control-group'>
+			            <label>Email</label>
+			            <div>
+			                <input type='text' name='email'>
+			            </div>
+			        </div>
+			
+			        <div class="form-actions">
+			            <button type="submit">Add</button>
+			        </div>
+			        
+				</form>
+	
+		    </fieldset>
+		    <div class="error-box">
+		        <ul class="error-list"></ul>
+		    </div>
+        </div>
+        <div class="clientDatabaseContainer clientDiv" style="float: right; width: 65%;">
+        	<h4>There are $mainForm.getClients().size() clients.</h4>
+    		<div class='clientList'>
+    			#foreach($client in $mainForm.getClients())
+        		<div class="clientSingle">
+			        <div><label>Name:</label><span>$client.getFirstName() $client.getLastName()</span></div>
+			        <div><label>Position:</label><span>$client.getPosition()</span></div>
+			        <div><label>Email:</label><span>$client.getEmail()</span></div>
+			        <form method="POST" action="client.do?action=delete">
+			        	<input type="hidden" name="id" value="$client.getId()"></input>
+			        	<div><label>&nbsp;</label><span><button type="submit">Delete ${client.getFirstName()} ${client.getLastName()}</button></span></div>
+			        <form>
+			    </div>
+			    #end
+        	</div>
+        </div>
+    	<div style="clear:both">&nbsp;</div>
+    </div>
+</div>
+
+#include("/velocity/footer.html")
