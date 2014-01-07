@@ -1,0 +1,84 @@
+#include("/velocity/header.html")
+
+#*******************************************************************************
+	NOTE: This is a simple hack to make the calculator work in the "old school"
+	      version of this app.  It is not intended as an example of good work!
+*******************************************************************************#
+<script type="text/javascript">
+	// 
+	requirejs(['app/calculator'],
+    	function (Calculator) {
+    	
+    		// prevent silly error
+			Handlebars.loadTemplate = function() { return ""; };
+    	
+			// using this as a proxy to do the work
+			var proxy = new Calculator.CalculatorView();
+			
+			proxy.renderVal = function() {
+				jQuery("input[name='ReadOut']").val(this.calculator.GetValue());
+			}
+			
+			jQuery('.btnClear').click(function() {
+				proxy.clearCalc.apply(proxy, arguments);
+			});
+			
+			jQuery('.btnClearEntry').click(function() {
+				proxy.clearCalcEntry.apply(proxy, arguments);
+			});
+			
+			jQuery('.btnNeg').click(function() {
+				proxy.calcNeg.apply(proxy, arguments);
+			});
+			
+			jQuery('.btnPercent').click(function() {
+				proxy.calcPercent.apply(proxy, arguments);
+			});
+			
+			jQuery('.btnDecimal').click(function() {
+				proxy.calcDecimal.apply(proxy, arguments);
+			});
+			
+			jQuery('.numInput').click(function() {
+				proxy.numPressed.apply(proxy, arguments);
+			});
+			
+			jQuery('.opInput').click(function() {
+				proxy.opPressed.apply(proxy, arguments);
+			});
+		}
+	);
+</script>
+
+<div class="row ui-widget ui-widget-content ui-corner-all">
+	<div class="twelve columns">
+		<div class="calculator" name="Keypad">
+	        <fieldset>
+	            <legend>Calculator</legend>
+	            <input name="ReadOut" type="Text" size="24" value="0" width="100%">
+	            <button class="btnClear">C</button>
+	            <button class="btnClearEntry">CE</button>
+	            <button class="numInput" name="7"  value="7">7</button>
+	            <button class="numInput" name="8"  value="8">8</button>
+	            <button class="numInput" name="9"  value="9">9</button>
+	            <button class="btnNeg" value="+/-">+/-</button>
+	            <button class="btnPercent"  value="%">%</button>
+	            <button class="numInput" name="4"  value="4">4</button>
+	            <button class="numInput" name="5"  value="5">5</button>
+	            <button class="numInput" name="6" value="6">6</button>
+	            <button class="opInput" name="+"  value="+">+</button>
+	            <button class="opInput" name="-"  value="-">-</button>
+	            <button class="numInput" name="1"  value="1">1</button>
+	            <button class="numInput" name="2"  value="2">2</button>
+	            <button class="numInput" name="3"  value="3">3</button>
+	            <button class="opInput" name="*"  value="*">*</button>
+	            <button class="opInput" name="/"  value="/">/</button>
+	            <button class="numInput" name="0"  value="0">0</button>
+	            <button class="btnDecimal" type="Button" value=".">.</button>
+	            <button class="opInput" name="=" value="=">=</button>
+	        </fieldset>
+	    </div>
+	</div>
+</div>
+
+#include("/velocity/footer.html")

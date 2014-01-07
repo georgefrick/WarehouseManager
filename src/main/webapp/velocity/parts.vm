@@ -1,0 +1,95 @@
+#include("/velocity/header.html")
+
+<div class="row ui-widget ui-widget-content ui-corner-all">
+	<div class="twelve columns">
+		<div class="container">
+			<div class='partsFormContainer partsDiv' style="float: left; width: 30%;">
+				<fieldset>
+			        <legend>Add a Part</legend>
+			        
+			        <form method="POST" action="part.do?action=save">
+				
+				        <div class='control-group'>
+				            <label>Part Code  (XXX-&#35;&#35;&#35;)</label>
+				            <div>
+				                <input type='text' name='partCode' size="6">
+				            </div>
+				        </div>
+				
+				        <div class='control-group'>
+				            <label>Name</label>
+				            <div>
+				                <input type='text' name='name'>
+				            </div>
+				        </div>
+				
+				        <div class='control-group'>
+				            <label>Description</label>
+				            <div>
+				                <input type='text' name='description' size="20">
+				            </div>
+				        </div>
+				
+				        <div class='control-group'>
+				            <label>Standard</label>
+				            <div>
+				                <select name="standard">
+				                    <option value="0">Please Choose</option>
+				                    <option value="SAE">SAE</option>
+				                    <option value="Metric">Metric</option>
+				                    <option value="N/A">N/A</option>
+				                </select>
+				            </div>
+				        </div>
+				
+				        <div class='control-group'>
+				            <label>Quantity Per</label>
+				            <div>
+				                <input type='text' name='quantityPer' title="For boxes, sets, cartons, etc" size="4">
+				            </div>
+				        </div>
+				
+				        <div class='control-group'>
+				            <input type='checkbox' name='isNonRefundable'> <label>Non-Refundable</label>
+				        </div>
+				
+				        <div class="form-actions">
+				            <button type="submit">Add</button>
+				        </div>
+				        
+				    </form>
+				        
+			    </fieldset>
+			    <div class="error-box">
+			        <ul class="error-list"></ul>
+			    </div>
+			</div>
+	        <div class="partsDatabaseContainer partsDiv" style="float: right; width: 65%;">
+	        	<h4>There are $mainForm.getParts().size() parts.</h4>
+
+    			<div class='partsList'>
+    			    #foreach($part in $mainForm.getParts())
+	    				<div class="partSingle">
+					        <div><label>Part Code:</label><span>$part.getPartCode()</span></div>
+					        <div><label>Name:</label><span>$part.getName()</span></div>
+					        <div><label>Description:</label><span>$part.getDescription()</span></div>
+					        <div><label>Standard:</label><span>$part.getStandard()</span></div>
+					        <div><label>Quantity Per:</label><span>$part.getQuantityPer()</span></div>
+					        #if($part.getIsNonRefundable())
+					        <div><label>&nbsp;</label><span style="font-weight: bold;">Item(s) are non-refundable.</span></div>
+					        #end
+					        
+			        		<form method="POST" action="part.do?action=delete">
+			        			<input type="hidden" name="id" value="$part.getId()"></input>
+					        	<div><label>&nbsp;</label><span><button>Delete $part.getName()</button></span></div>
+					        </form>
+					    </div>
+					#end
+    			</div>
+	        </div>
+	    </div>
+    	<div style="clear:both">&nbsp;</div>
+    </div>
+</div>
+
+#include("/velocity/footer.html")

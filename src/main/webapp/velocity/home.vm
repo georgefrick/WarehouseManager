@@ -1,0 +1,28 @@
+#include("/velocity/header.html")
+
+<div class="row ui-widget ui-widget-content ui-corner-all">
+	<div class="twelve columns">
+		<article>
+		
+		    <h3><a href="#">The Warehouse Inventory Example</a></h3>
+		    <h6>Written by <a href="http://www.georgefrick.com" target="_blank">George Frick</a> on September 24, 2013.</h6>
+		
+		    <div class="row">
+		        <div class="six columns">
+		            <p>This application is a full blown example of using Backbone and various supporting libraries and tools to do real software development. Each includes file is commented, and everything is MIT license.</p>
+		            <p>By demonstrating various usage patterns, gotchas, and corner implementations; an argument is made for an unobtrusive productivity gain. Backbone will never provide everything, but it will never take over. You don't have to use Backbone for everything, it can be another tool you apply to front end application design.</p>
+		        </div>
+		        <div class="six columns">
+		            <img src="images/reprap-diy-printer-kit.jpg" width="60%" height="60%" />
+		        </div>
+		    </div>
+		
+		    <p>The use of RequireJS, Grunt, and Foundation showcase some of the power of modern front end development tools. We can gain productivity very similar to the backend. With well tested, optimized builds that aren't held back due to automation.</p>
+		
+		    <p>All of this combined should allow you to jump right into Backbone; without giving you an inch thick manual to work through. We all learn best by code and this is a living tutorial that you can hopefully learn from, bootstrap, and reference.</p>
+		
+		</article>
+	</div>
+</div>
+
+#include("/velocity/footer.html")
