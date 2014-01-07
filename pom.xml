@@ -51,7 +51,7 @@
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<configuration>
 				    <!-- If you want to use this, put the proper entry in your .m2 directory settings file and update here.. -->
-					<url>http://melchior:9090/manager/text</url>
+					<url>http://localhost:8080/manager/text</url>
 					<server>mytomcat</server>
 					<path>/warehouseManager</path>
 				</configuration>
@@ -68,6 +68,27 @@
 					</compilerArguments>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>cmd</executable>
+                    <arguments>
+                        <argument>/c</argument>
+                        <argument>grunt</argument>
+                        <argument>--no-color</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
